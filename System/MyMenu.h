@@ -1,0 +1,9 @@
+//这两个文件绑定数据以及显示
+#ifndef __MYMENU_H
+#define __MYMENU_H
+#include "stm32f10x.h"
+#include "OLED.h"
+#include "Menu.h"
+
+
+#endif
