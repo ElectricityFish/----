@@ -3,6 +3,7 @@
 #include "OLED.h"
 #include "Timer.h"
 #include "Key.h"
+#include "MyMenu.h"
 
 uint8_t KeyNum;
 
@@ -13,30 +14,29 @@ int main(void)
 	OLED_Init ();
 	Key_Init();
 	Timer_Init();
+	menu_init();
+	
 	
 	while(1)
 	{
+		menu_show();
 		KeyNum=Key_GetNum();
 		
 		if(KeyNum==1)
 		{
-			OLED_Clear ();
-			OLED_ShowNum (1,1,1,1);
+			
 		}
 		if(KeyNum==2)
 		{
-			OLED_Clear ();
-			OLED_ShowNum (1,1,2,1);
+			
 		}
 		if(KeyNum==3)
 		{
-			OLED_Clear ();
-			OLED_ShowNum (1,1,3,1);
+			
 		}
 		if(KeyNum==4)
 		{
-			OLED_Clear ();
-			OLED_ShowNum (1,1,4,1);
+			
 		}
 	
 	}

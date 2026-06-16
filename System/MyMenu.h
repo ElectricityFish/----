@@ -5,5 +5,7 @@
 #include "OLED.h"
 #include "Menu.h"
 
+void menu_init(void);
+void menu_show(void);
 
 #endif
