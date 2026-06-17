@@ -8,4 +8,7 @@
 void menu_init(void);
 void menu_show(void);
 
+void key_down(void);
+void key_up(void);
+
 #endif

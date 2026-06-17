@@ -24,11 +24,11 @@ int main(void)
 		
 		if(KeyNum==1)
 		{
-			
+			key_down();
 		}
 		if(KeyNum==2)
 		{
-			
+			key_up();
 		}
 		if(KeyNum==3)
 		{
