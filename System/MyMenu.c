@@ -20,6 +20,18 @@ uint8_t test2=50;
 //通过初始化函数在任意节点下添加任意东西
 void menu_init(void)
 {
+
+	//根节点初始化
+	head.data=NULL;
+	head.father=NULL;
+	head.first_son=NULL;
+	head.kind=MENU_Folder;
+	head.last_brother=NULL;
+	head.name="MENU";
+	head.next_brother=NULL;
+	head.sons=0;
+	head.no=0;
+
 	Creat_Menu_Folder(&head,&m1,"hello-1");
 	Creat_Menu_Folder(&head,&m2,"hello-2");
 	Creat_Menu_Folder(&head,&m3,"hello-3");
@@ -27,7 +39,7 @@ void menu_init(void)
 	Creat_Menu_Number(&head,&m6,"test1",&test1,uint8_Box);
 
 	Creat_Menu_Folder(&m1,&m4,"ok-1");
-	Creat_Menu_Folder(&m2,&m5,"ok-2");
+	Creat_Menu_Folder(&m1,&m5,"ok-2");
 	
 	key=head.first_son;
 	
@@ -53,8 +65,10 @@ void show_key(void)
 void key_down(void)
 {
 	if(key->next_brother!=NULL)
-	key=key->next_brother;
-	//else key=key->first_son;
+	{
+		key=key->next_brother;
+	}
+	
 }
 
 void key_up(void)
@@ -63,12 +77,29 @@ void key_up(void)
 	key=key->last_brother;
 }
 
+void key_enter(void)
+{
+	if(key->sons > 0)
+	{
+		key = key->first_son;
+		OLED_Clear();
+	}
+		
+}
+
+void key_quit(void)
+{
+	if(key->father->father != NULL)
+	{
+		key = key->father;	
+		OLED_Clear();
+	}
+}
 
 void show_number(void)
 {
-	Menu_Item *h=&head;
-	Menu_Item *s=head.first_son;
-
+	Menu_Item *h=key->father;
+	Menu_Item *s=key->father->first_son;
 	for(uint8_t i=0;i<h->sons;i++)
 	{
 
@@ -107,8 +138,8 @@ void menu_show(void)
 {
 	//OLED_Clear();
 	
-	Menu_Item *h=&head;
-	Menu_Item *s=head.first_son;
+	Menu_Item *h=key->father;
+	Menu_Item *s=key->father->first_son;
 	
 	for(uint8_t i=0;i<h->sons;i++)
 	{

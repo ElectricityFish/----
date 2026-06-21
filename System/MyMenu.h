@@ -10,5 +10,6 @@ void menu_show(void);
 
 void key_down(void);
 void key_up(void);
-
+void key_enter(void);
+void key_quit(void);
 #endif

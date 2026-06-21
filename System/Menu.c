@@ -3,7 +3,7 @@
 //创建菜单项，初始化成员
 static void Creat_Menu_Item(Menu_Item *father,Menu_Item *me ,char name[],void *data,MENU_KIND kind)	//参数：父节点，直接点，名字，绑定的变量，属性
 {
-	//if(kind==MENU_Folder)return;	//只有文件类型项才能有子菜单
+	if(father->kind!=MENU_Folder)return;	//只有文件类型项才能有子菜单
 	
 	me->sons=0;
 	me->name=name;

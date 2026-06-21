@@ -32,11 +32,11 @@ int main(void)
 		}
 		if(KeyNum==3)
 		{
-			
+			key_enter();
 		}
 		if(KeyNum==4)
 		{
-			
+			key_quit();
 		}
 	
 	}
