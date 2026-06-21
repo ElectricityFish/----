@@ -4,6 +4,7 @@
 #include "stm32f10x.h"
 #include "OLED.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef enum MENU_KIND{
 	MENU_Folder = 0,
@@ -23,6 +24,8 @@ typedef struct  Menu_Item{
 	
 	uint8_t sons;//记录父节点的子节点数量
 	uint8_t no;  //记录当前是父节点的第几个子节点
+
+	bool select;	//记录是否被选中
 	
 	struct  Menu_Item *father;			//指向父节点（上一级菜单）
 	struct  Menu_Item *first_son;		//指向第一个子节点（下一级菜单）

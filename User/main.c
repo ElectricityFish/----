@@ -24,15 +24,16 @@ int main(void)
 		
 		if(KeyNum==1)
 		{
-			key_down();
+			key_1();
 		}
 		if(KeyNum==2)
 		{
-			key_up();
+			key_2();
 		}
 		if(KeyNum==3)
 		{
 			key_enter();
+			key_select();
 		}
 		if(KeyNum==4)
 		{

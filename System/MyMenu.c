@@ -62,7 +62,7 @@ void show_key(void)
 	}
 }
 
-void key_down(void)
+static void key_down(void)
 {
 	if(key->next_brother!=NULL)
 	{
@@ -71,7 +71,7 @@ void key_down(void)
 	
 }
 
-void key_up(void)
+static void key_up(void)
 {
 	if(key->last_brother!=NULL)
 	key=key->last_brother;
@@ -96,12 +96,112 @@ void key_quit(void)
 	}
 }
 
+void key_select(void)
+{
+	if(key->kind != MENU_Folder)
+	{
+		key->select = !key->select;
+	}
+}
+
+void key_plus(void)
+{
+	switch (key->kind)
+		{
+			case uint8_Box :
+			{
+				*(uint8_t *)key->data+=1;
+				break;
+			}
+			case uint16_Box :
+			{
+				*(uint16_t *)key->data+=1;
+				break;
+			}
+			case int8_Box :
+			{
+				*(int8_t *)key->data+=1;
+				break;
+			}
+			case int16_Box :
+			{
+				*(int16_t *)key->data+=1;
+				break;
+			}
+			default:
+			break;			
+		}
+}
+
+void key_decline(void)
+{
+	switch (key->kind)
+		{
+			case uint8_Box :
+			{
+				*(uint8_t *)key->data-=1;
+				break;
+			}
+			case uint16_Box :
+			{
+				*(uint16_t *)key->data-=1;
+				break;
+			}
+			case int8_Box :
+			{
+				*(int8_t *)key->data-=1;
+				break;
+			}
+			case int16_Box :
+			{
+				*(int16_t *)key->data-=1;
+				break;
+			}
+			default:
+			break;			
+		}
+}
+
+
+void key_1(void)
+{
+	if(key->select==false)
+	{
+		key_down();
+	}else 
+	{
+		key_plus();
+		//调参函数
+	}
+}
+
+void key_2(void)
+{
+	if(key->select==false)
+	{
+		key_up();
+	}else 
+	{
+		key_decline();
+		//调参函数
+	}
+}
+
+
 void show_number(void)
 {
 	Menu_Item *h=key->father;
 	Menu_Item *s=key->father->first_son;
+
+
 	for(uint8_t i=0;i<h->sons;i++)
 	{
+
+		if(s->select)
+		{
+			OLED_ShowChar(i+1,11,'@');
+		}else	OLED_ShowChar(i+1,11,' ');
+		
 
 		switch (s->kind)
 		{

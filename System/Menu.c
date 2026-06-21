@@ -5,6 +5,7 @@ static void Creat_Menu_Item(Menu_Item *father,Menu_Item *me ,char name[],void *d
 {
 	if(father->kind!=MENU_Folder)return;	//只有文件类型项才能有子菜单
 	
+	me->select = false;
 	me->sons=0;
 	me->name=name;
 	me->father=father;
