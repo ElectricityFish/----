@@ -1,5 +1,10 @@
 #include "Menu.h"
 
+#define Menu_Item_Max 64							//菜单项最大数量
+
+static Menu_Item menu_item_array[Menu_Item_Max];	//创建菜单项对象(内存)池，最多Menu_Item_Max个菜单项
+static uint8_t menu_array_index=0;					//菜单项对象池的索引
+
 //创建菜单项，初始化成员
 static void Creat_Menu_Item(Menu_Item *father,Menu_Item *me ,char name[],void *data,MENU_KIND kind)	//参数：父节点，直接点，名字，绑定的变量，属性
 {
@@ -46,4 +51,22 @@ void Creat_Menu_Number(Menu_Item *father,Menu_Item *me ,char name[],void *data,M
 	Creat_Menu_Item(father,me,name,data,kind);
 	
 }
+
+
+//动态创建目录，返回创建的目录的地址
+Menu_Item *create_menu_folder_dynamic(Menu_Item *father,char name[])
+{
+	Menu_Item *me = &menu_item_array[menu_array_index++];	//在菜单项对象池中取一个对象
+	Creat_Menu_Item(father,me,name,NULL,MENU_Folder);
+	return me;	//返回创建的目录的地址
+}
+
+//动态创建文件，返回创建的文件的地址
+Menu_Item *create_menu_number_dynamic(Menu_Item *father,char name[],void *data,MENU_KIND kind)
+{
+	Menu_Item *me = &menu_item_array[menu_array_index++];	//在菜单项对象池中取一个对象
+	Creat_Menu_Item(father,me,name,data,kind);
+	return me;	//返回创建的目录的地址
+}
+
 

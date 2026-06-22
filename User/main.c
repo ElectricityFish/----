@@ -32,8 +32,8 @@ int main(void)
 		}
 		if(KeyNum==3)
 		{
-			key_enter();
 			key_select();
+			key_enter();
 		}
 		if(KeyNum==4)
 		{

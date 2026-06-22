@@ -3,15 +3,10 @@
 Menu_Item head;		//创建根节点
 Menu_Item *key;
 
+
+
 Menu_Item m1;
 Menu_Item m2;
-Menu_Item m3;
-
-Menu_Item m4;
-Menu_Item m5;
-
-Menu_Item m6;
-
 
 uint8_t test1=10;
 uint8_t test2=50;
@@ -32,15 +27,14 @@ void menu_init(void)
 	head.sons=0;
 	head.no=0;
 
-	Creat_Menu_Folder(&head,&m1,"hello-1");
-	Creat_Menu_Folder(&head,&m2,"hello-2");
-	Creat_Menu_Folder(&head,&m3,"hello-3");
-	
-	Creat_Menu_Number(&head,&m6,"test1",&test1,uint8_Box);
+	Menu_Item *folder1 = create_menu_folder_dynamic(&head,"Folder1");
+	Menu_Item *folder2 = create_menu_folder_dynamic(&head,"Folder2");
+	Menu_Item *folder3 = create_menu_folder_dynamic(&head,"Folder3");
+	Menu_Item *folder4 = create_menu_folder_dynamic(folder1,"Folder4");
 
-	Creat_Menu_Folder(&m1,&m4,"ok-1");
-	Creat_Menu_Folder(&m1,&m5,"ok-2");
-	
+	create_menu_number_dynamic(folder1,"test1",&test1,uint8_Box);
+	create_menu_number_dynamic(folder4,"test2",&test2,uint8_Box);
+
 	key=head.first_son;
 	
 }
