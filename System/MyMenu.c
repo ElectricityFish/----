@@ -133,7 +133,8 @@ void key_plus(void)
 		}
 }
 
-void key_decline(void)
+
+void key_sub(void)
 {
 	switch (key->kind)
 		{
@@ -182,7 +183,7 @@ void key_2(void)
 		key_up();
 	}else 
 	{
-		key_decline();
+		key_sub();
 		//调参函数
 	}
 }
